@@ -5,11 +5,11 @@ services:
     user: root
     container_name: os-pyspark-jupyter-lab
     ports:
-      - 9888:9888
-      - 4140:4140
+      - 9888:8888
+      - 4140:4040
     environment:
-      JUPYTER_PORT: 9888
-      SPARK_UI_PORT: 4140
+      JUPYTER_PORT: 8888
+      SPARK_UI_PORT: 4040
       GRANT_SUDO: yes
     volumes:
       - os-streaming_data:/data:rw
@@ -17,8 +17,8 @@ services:
     image: bde2020/spark-master:3.3.0-hadoop3.3
     container_name: os-spark-master
     ports:
-      - "8180:8180"
-      - "7077:7077"
+      - "8180:8080"
+      - "7177:7077"
     environment:
       - INIT_DAEMON_STEP=setup_spark
     volumes:
@@ -29,7 +29,7 @@ services:
     depends_on:
       - os-spark-master
     ports:
-      - "8181:8181"
+      - "8181:8081"
     environment:
       - "SPARK_MASTER=spark://os-spark-master:7077"
     volumes:
@@ -40,7 +40,7 @@ services:
     depends_on:
       - os-spark-master
     ports:
-      - "8182:8181"
+      - "8182:8081"
     environment:
       - "SPARK_MASTER=spark://os-spark-master:7077"
     volumes:
@@ -51,7 +51,7 @@ services:
       depends_on:
         - os-spark-master
       ports:
-        - "8183:8183"
+        - "18181:18081"
       volumes:
         - /tmp/os-spark-events-local:/tmp/spark-events
 volumes:

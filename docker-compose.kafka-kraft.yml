@@ -7,8 +7,8 @@ services:
       KAFKA_NODE_ID: 1
       KAFKA_PROCESS_ROLES: "broker,controller"
       KAFKA_CONTROLLER_QUORUM_VOTERS: "1@os-kafka:9096"
-      KAFKA_LISTENERS: INTERNAL://0.0.0.0:9095,OUTSIDE://0.0.0.0:9097,CONTROLLER://0.0.0.0:9096
-      KAFKA_ADVERTISED_LISTENERS: INTERNAL://os-kafka:9095,OUTSIDE://localhost:9097
+      KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,OUTSIDE://0.0.0.0:9097,CONTROLLER://0.0.0.0:9096
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://os-kafka:9092,OUTSIDE://localhost:9097
       KAFKA_ADVERTISED_HOST_NAME: "os-kafka"
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,OUTSIDE:PLAINTEXT,CONTROLLER:PLAINTEXT
       KAFKA_CONTROLLER_LISTENER_NAMES: "CONTROLLER"
@@ -20,7 +20,7 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       CLUSTER_ID: "5Yr1SIgZRy-c-dgRabWy3f"
     ports:
-      - "9095:9095"  # Internal Docker network (optional to expose)
+      - "9095:9092"  # Internal Docker network (optional to expose)
       - "9096:9096"  # Controller listener port
       - "9097:9097"  # External access on localhost
     volumes:
